@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1039241702549",
+    "firebase_url": "https://appsistant-a83cc.firebaseio.com",
+    "project_id": "appsistant-a83cc",
+    "storage_bucket": "appsistant-a83cc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1039241702549:android:5ef76c34307e6299187f9c",
+        "android_client_info": {
+          "package_name": "com.cloud.appsistant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1039241702549-i0tni1iapgsl2aq3ue37488hkce6vb12.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDId394H9fIsujzwGClhHQ5n020NZC3WLQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1039241702549-i0tni1iapgsl2aq3ue37488hkce6vb12.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
