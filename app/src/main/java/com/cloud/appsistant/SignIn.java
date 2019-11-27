@@ -29,7 +29,6 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener{
 
     private FirebaseAuth mAuth;
     private SignInButton sign;
-    private Button signOutButton;
     GoogleSignInClient mGoogleSignInClient;
     private static final int RC_SIGN_IN = 9001;
     private static final String TAG = "SignInActivity";
@@ -40,9 +39,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener{
         setContentView(R.layout.sign_in);
 
         sign = findViewById(R.id.sign_in_button);
-        signOutButton = findViewById(R.id.sign_out_button);
         sign.setOnClickListener(this);
-        signOutButton.setOnClickListener(this);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -66,12 +63,8 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener{
 
     private void updateUI(FirebaseUser user) {
         if(user == null) {
-            sign.setEnabled(true);
-            signOutButton.setEnabled(false);
         }
         else {
-            sign.setEnabled(false);
-            signOutButton.setEnabled(true);
             proceed();
         }
     }
@@ -132,10 +125,6 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener{
         switch(v.getId()) {
             case R.id.sign_in_button: {
                 signIn();
-                break;
-            }
-            case R.id.sign_out_button: {
-                signOut();
                 break;
             }
         }
