@@ -1,6 +1,7 @@
 package com.cloud.appsistant;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -13,26 +14,28 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
-public class CreateCardActivity extends Activity implements View.OnClickListener {
+import java.util.HashMap;
+import java.util.Map;
+
+
+public class CreateCardActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button addCardButton;
     EditText nameText;
     EditText surnameText;
     EditText phoneText;
     EditText emailText;
+    FirebaseFirestore db;
 
-    DatabaseReference databaseCards;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_card);
 
-
-        databaseCards = FirebaseDatabase.getInstance().getReference("cards");
+        db = FirebaseFirestore.getInstance();
 
         nameText = findViewById(R.id.nameText);
         surnameText = findViewById(R.id.surnameText);
@@ -72,13 +75,17 @@ public class CreateCardActivity extends Activity implements View.OnClickListener
         String phone = phoneText.getText().toString().trim();
         String email = emailText.getText().toString().trim();
 
+        Map<String, Object> cardData = new HashMap<>();
+        cardData.put(Main.nameKey, name);
+        cardData.put(Main.surnameKey, surname);
+        cardData.put(Main.phoneKey, phone);
+        cardData.put(Main.emailKey, email);
+
         if(TextUtils.isEmpty(name) && TextUtils.isEmpty(surname) && TextUtils.isEmpty(phone) && TextUtils.isEmpty(email)) {
             Toast.makeText(this, "You have to fill something", Toast.LENGTH_LONG).show();
         } else {
-            String id = databaseCards.push().getKey();
-            Card card = new Card(id, name, surname, phone, email);
-            databaseCards.child(id).setValue(card);
-            Toast.makeText(this, "Card added", Toast.LENGTH_LONG).show();
+            db.collection(Main.usersKey).document(Main.uid).collection(Main.cardsKey).add(cardData);
+            ViewPagerAdapter.currentF.updateView();
             finish();
         }
     }

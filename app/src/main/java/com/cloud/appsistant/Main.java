@@ -19,11 +19,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +30,18 @@ public class Main extends AppCompatActivity {
     private ViewPager viewPager;
     private ViewPagerAdapter adapter;
     private TabLayout tabLayout;
+
+    public static String uid;
+    public static String nameKey = "name";
+    public static String surnameKey = "surname";
+    public static String phoneKey = "phone";
+    public static String emailKey = "email";
+    public static String usersKey = "users";
+    public static String cardsKey = "cards";
+    public static String meetingsKey = "meetings";
+    public static String cardIdKey = "cardId";
+    public static String dateKey = "date";
+    public static String timeKey = "time";
 
 
     @Override
@@ -47,14 +55,13 @@ public class Main extends AppCompatActivity {
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
+        uid = FirebaseAuth.getInstance().getUid();
         viewPager = findViewById(R.id.pager);
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
 
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-
-
     }
 
 

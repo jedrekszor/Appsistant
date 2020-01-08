@@ -10,6 +10,9 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 
+    public static CardsFragment currentF;
+    public static CalendarFragment currentCalendar;
+
     public ViewPagerAdapter(@NonNull FragmentManager fm) {
         super(fm);
     }
@@ -19,9 +22,11 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         if(position == 0) {
             CalendarFragment calendarFragment = new CalendarFragment();
+            currentCalendar = calendarFragment;
             return calendarFragment;
         } else {
             CardsFragment cardsFragment = new CardsFragment();
+            currentF = cardsFragment;
             return cardsFragment;
         }
     }
