@@ -25,7 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-public class SignIn extends AppCompatActivity implements View.OnClickListener{
+public class SignIn extends AppCompatActivity{
 
     private FirebaseAuth mAuth;
     private SignInButton sign;
@@ -38,8 +38,8 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_in);
 
-        sign = findViewById(R.id.sign_in_button);
-        sign.setOnClickListener(this);
+//        sign = findViewById(R.id.sign_in_button);
+//        sign.setOnClickListener(this);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -49,7 +49,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener{
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         mAuth = FirebaseAuth.getInstance();
 
-
+        signIn();
     }
 
     @Override
@@ -120,15 +120,15 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener{
                 });
     }
 
-    @Override
-    public void onClick(View v) {
-        switch(v.getId()) {
-            case R.id.sign_in_button: {
-                signIn();
-                break;
-            }
-        }
-    }
+//    @Override
+//    public void onClick(View v) {
+//        switch(v.getId()) {
+//            case R.id.sign_in_button: {
+//                signIn();
+//                break;
+//            }
+//        }
+//    }
 
     private void proceed() {
         Intent logged = new Intent(SignIn.this, Main.class);

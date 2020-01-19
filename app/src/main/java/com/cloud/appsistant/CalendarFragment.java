@@ -169,9 +169,9 @@ public class CalendarFragment extends Fragment implements View.OnClickListener {
 
     public static boolean addEvent(String date) throws ParseException {
         Date temp = new SimpleDateFormat("dd/MM/yyyy").parse(date);
-        if (temp.before(Calendar.getInstance().getTime()))
-            return false;
-        Event event = new Event(Color.GREEN, temp.getTime());
+//        if (temp.before(Calendar.getInstance().getTime()))
+//            return false;
+        Event event = new Event(Color.parseColor("#e67a3c"), temp.getTime());
         calendar.addEvent(event);
         return true;
     }
